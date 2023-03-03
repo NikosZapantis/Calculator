@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="calstyle.css">
     <script type="text/javascript" src="calscript.js"></script>
     <link rel="icon" href="/Html/Calculator/favicon_calc.jpg">
+
 <head>
 
     <meta charset="utf-8">
@@ -19,8 +20,9 @@
     <form onsubmit="return false">
       <table class="calcborder">
         <tr>
-          <td colspan="3"><input class="display" placeholder="0" type="text" id="result" disabled/></td>
-          <td><input type="button" value="C" onclick="clearScreen()" id="btn"/></td>
+          <td><input type="button" value="AC" onclick="clearScreen()" id="btn1"/></td>
+          <td colspan="2"><input class="display" placeholder="0" type="text" id="result" disabled/></td>
+          <td><input type="button" value="←" id="bckspc" onclick="backspace()"/></td>
         </tr>
 
         <tr>
@@ -48,7 +50,7 @@
           <td><input type="button" value="." onclick="display('.')"/></td>
           <td><input type="button" value="0" onclick="display('0')"/></td>
           <td><input type="button" value="x" onclick="display('*')"/></td>
-          <td><input type="button" value="=" onclick="calculate()" id="btn"/></td>
+          <td><input type="button" value="=" onclick="calculate()" id="btn2"/></td>
         </tr>
 
       </table>
