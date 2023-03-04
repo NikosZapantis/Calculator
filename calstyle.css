@@ -3,13 +3,13 @@ body {
 }
 
 .calcborder {
-    padding: 10px;
+    padding: 15px;
     border-radius: 1em;
-    height: 380px;
-    width: 400px;
+    height: 420px;
+    width: 440px;
     margin: auto;
     background-color: #191b28;
-    box-shadow: rgb(0, 0, 0) 0px 20px 20px, rgb(0, 0, 0) 10px 6px 6px;
+    box-shadow: 24px 21px 12px rgba(0, 0, 0, 1);
 }
 
 .display {
@@ -19,20 +19,20 @@ body {
     border: solid black 0.5px;
     color: rgb(0, 0, 0);
     border-radius: 5px;
-    width: 97% !important;
-    height: 64% !important;
+    width: 200% !important;
+    height: 75% !important;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 #btn1 , #btn2 , #bckspc {
-    background-color: #ff004c;
+    background-color: #9d0b28;
     cursor: pointer;
 }
 
 #btn1:hover , #btn2:hover , #bckspc:hover {
     background-color: #191b28e3;
-    color:#ff004c ;
+    color: #ff004c;
     cursor: pointer;
 }
 
@@ -62,7 +62,7 @@ input:active[type=button] {
 
 h1 {
     text-align: center;
-    color: #ff004c;
+    color: #9d0b28;
     background-color:#000000;
     width: 25%;
     position: sticky;
