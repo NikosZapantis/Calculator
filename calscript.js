@@ -12,7 +12,10 @@ function backspace() {
 
 let decimalPressed = false;
 
-//TODO: Division by 0 cannot be done - Cannot accept 2 operators in a row
+//?DONE todo: Division by 0 cannot be done - Cannot accept 2 operators in a row
+//?DONE todo: Add sqrt and power at the calc
+//?DONE todo: autocomple 0 if starting with / or * operator so the evaluation is (0 / or *) a number
+
 function display(value) {
 
     const input = document.getElementById("result");
@@ -20,37 +23,46 @@ function display(value) {
     const lastChar = currentValue[currentValue.length - 1];
   
     //Prevention from spamming 0's
-    if (value === "0" && (currentValue === "" || currentValue === "0")) {
+    if (value === "0" && (currentValue === "0")) {
 
         return;
     }
 
-    //Prevention from starting with an operator
-    if (currentValue === "" && (value === "+" || value === "-" || value === "*" || value === "/")) {
+    //Prevention from starting with a + operator
+    if (currentValue === "" && (value === "+")) {
 
         return;
     }
 
     //Prevention of getting two operators in a row
-    if ((value === "+" || value === "-" || value === "*" || value === "/") && (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/")) {
+    if ((value === "+" || value === "-" || value === "*" || value === "/" || value === "√" || value === "^2") &&
+        (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/" ||
+            lastChar === "^2" || (currentValue.endsWith("^2")) || (currentValue.startsWith("√")))) {
 
         return;
     }
 
     // Case that there is an operator before a float number and adding a zero before the .
-    if (value === '.' && (lastChar === '+' || lastChar === '-' || lastChar === '*' || lastChar === '/')) {
+    if (value === "." && (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/")) {
 
-        input.value = currentValue + '0' + value;
-    }else if (value === '.' && currentValue === '') {  //Case that this is the first number in the display section and adding a zero before the .
+        input.value = currentValue + "0" + value;
+    }else if (value === "." && currentValue === "") {  //Case that this is the first number in the display section and adding a zero before the .
 
-        input.value = '0' + value;
+        input.value = "0" + value;
     }else {
 
         input.value = currentValue + value;
     }
+
+    //Case of trying to multiply or divide or power 0 with something
+    if(currentValue === "" && (value === "*" || value === "/" || value === "^2")) {
+
+        input.value = currentValue + "0" + value;
+    }
+    
 }
 
-//?DONE: When input is undefined it shows the undefined message in the display section! FIX
+//?DONE todo: When input is undefined it shows the undefined message in the display section! FIX
 
 function calculate() {
 
@@ -60,6 +72,28 @@ function calculate() {
     if(n1 === "") {
 
         document.getElementById("result").value = "";
+        return;
+    }
+
+    if (n1.includes("√")) {
+
+        var number = n1.slice(1);
+        if (isNaN(parseFloat(number))) {
+
+            document.getElementById("result").value = "Invalid input";
+            return;
+        }
+
+        var result = Math.sqrt(parseFloat(number));
+        document.getElementById("result").value = result;
+        return;
+    }
+
+    if (n1.includes("^2")) {
+
+        var number = n1.slice(0, -2);
+        var result = Math.pow(number, 2);
+        document.getElementById("result").value = result;
         return;
     }
 
@@ -73,6 +107,9 @@ function calculate() {
 
     document.getElementById("result").value = n2;
 }
+
+
+//?DONE todo: Add event.keycode so it is responsive with keyboard
 
 document.addEventListener("keydown", function(event) {
 
