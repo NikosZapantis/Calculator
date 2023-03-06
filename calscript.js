@@ -15,25 +15,21 @@ let decimalPressed = false;
 //?DONE todo: Division by 0 cannot be done - Cannot accept 2 operators in a row
 //?DONE todo: Add sqrt and power at the calc
 //?DONE todo: autocomple 0 if starting with / or * operator so the evaluation is (0 / or *) a number
+//?DONE todo: add spaces before and after an operator
 
 function display(value) {
 
     const input = document.getElementById("result");
     const currentValue = input.value;
     const lastChar = currentValue[currentValue.length - 1];
-  
-    //Prevention from spamming 0's
-    if (value === "0" && (currentValue === "0")) {
+
+    //Prevention from spamming 0's && Prevention from starting with a + operator
+    if ((value === "0" && (currentValue === "")) || (currentValue === "" && (value === "+")) || (currentValue != "" && (value === "√")) 
+        || (lastChar === " " && (value === "+" || value === "-" || value === "*" || value === "/")) || (lastChar === " " && (value === "^2"))) {
 
         return;
     }
-
-    //Prevention from starting with a + operator
-    if (currentValue === "" && (value === "+")) {
-
-        return;
-    }
-
+    
     //Prevention of getting two operators in a row
     if ((value === "+" || value === "-" || value === "*" || value === "/" || value === "√" || value === "^2") &&
         (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/" ||
@@ -42,22 +38,23 @@ function display(value) {
         return;
     }
 
-    // Case that there is an operator before a float number and adding a zero before the .
-    if (value === "." && (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/")) {
+    // Case that there is an operator before a float number and adding a zero before the . && Case of trying to multiply or divide or power 0 with something
+    if ((value === "." && (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/")) 
+        || (currentValue === "" && (value === "*" || value === "/" || value === "^2"))) {
 
         input.value = currentValue + "0" + value;
     }else if (value === "." && currentValue === "") {  //Case that this is the first number in the display section and adding a zero before the .
 
         input.value = "0" + value;
-    }else {
+    }else if(currentValue != "" && (value === "+" || value === "-" || value === "*" || value === "/")) { //Adding spaces between op and num
 
-        input.value = currentValue + value;
-    }
-
-    //Case of trying to multiply or divide or power 0 with something
-    if(currentValue === "" && (value === "*" || value === "/" || value === "^2")) {
-
+        input.value = currentValue + " " + value + " ";
+    }else if (value === "." && lastChar === " ") { //After a space is added lastChar is " " so I have to add a 0 before the floating point
+    
         input.value = currentValue + "0" + value;
+    }else {
+        
+        input.value = currentValue + value;
     }
     
 }
@@ -132,3 +129,10 @@ document.addEventListener("keydown", function(event) {
         }
     }
 });
+
+
+function switchTheme() {
+
+    var element = document.body;
+    element.classList.toggle("light-mode");
+}
