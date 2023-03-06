@@ -12,7 +12,11 @@
     <h1>
       Niko's Calculator
     </h1>
-        <br>
+
+      <label class="switch">
+        <input class="switch__input" type="checkbox" onclick="switchTheme()">
+        <span class="switch__slider"></span>
+      </label>
 </head>
 
 <body>
@@ -25,8 +29,8 @@
 
         <tr>
           <td><input type="button" value="AC" onclick="clearScreen()" id="btn1"/></td>
-          <td><input type="button" value="x²" onclick="display('^2')"/></td> <!--Na balw button edw pou na kanei x²-->
-          <td><input type="button" value="√x" onclick="display('√')"/></td> <!--Na balw button edw pou na kanei riza √x-->
+          <td><input type="button" value="x²" onclick="display('^2')"/></td>
+          <td><input type="button" value="√x" onclick="display('√')"/></td>
           <td><input type="button" value="←" id="bckspc" onclick="backspace()"/></td>
         </tr>
 
@@ -55,7 +59,7 @@
           <td><input type="button" value="." onclick="display('.')"/></td>
           <td><input type="button" value="0" onclick="display('0')"/></td>
           <td><input type="button" value="x" onclick="display('*')"/></td>
-          <td><input type="button" value="=" onclick="calculate()" id="btn2"/></td>
+          <td><input type="button" value="=" onclick="calculate();" id="btn2"/></td>
         </tr>
 
       </table>
