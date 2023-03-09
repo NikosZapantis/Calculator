@@ -23,39 +23,7 @@ function display(value) {
     const currentValue = input.value;
     const lastChar = currentValue[currentValue.length - 1];
 
-    //Prevention from spamming 0's && Prevention from starting with a + operator
-    if ((value === "0" && (currentValue === "")) || (currentValue === "" && (value === "+")) || (currentValue != "" && (value === "√")) 
-        || (lastChar === " " && (value === "+" || value === "-" || value === "*" || value === "/")) || (lastChar === " " && (value === "^2"))) {
-
-        return;
-    }
-    
-    //Prevention of getting two operators in a row
-    if ((value === "+" || value === "-" || value === "*" || value === "/" || value === "√" || value === "^2") &&
-        (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/" ||
-            lastChar === "^2" || (currentValue.endsWith("^2")) || (currentValue.startsWith("√")))) {
-
-        return;
-    }
-
-    // Case that there is an operator before a float number and adding a zero before the . && Case of trying to multiply or divide or power 0 with something
-    if ((value === "." && (lastChar === "+" || lastChar === "-" || lastChar === "*" || lastChar === "/")) 
-        || (currentValue === "" && (value === "*" || value === "/" || value === "^2"))) {
-
-        input.value = currentValue + "0" + value;
-    }else if (value === "." && currentValue === "") {  //Case that this is the first number in the display section and adding a zero before the .
-
-        input.value = "0" + value;
-    }else if(currentValue != "" && (value === "+" || value === "-" || value === "*" || value === "/")) { //Adding spaces between op and num
-
-        input.value = currentValue + " " + value + " ";
-    }else if (value === "." && lastChar === " ") { //After a space is added lastChar is " " so I have to add a 0 before the floating point
-    
-        input.value = currentValue + "0" + value;
-    }else {
-        
-        input.value = currentValue + value;
-    }
+    //Checking all the cases here, such as prevention from 0's spamming, not accepting double operators etc.
     
 }
 
